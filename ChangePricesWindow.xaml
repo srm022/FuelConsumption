@@ -1,0 +1,20 @@
+﻿<Window x:Class="FuelConsumption.ChangePricesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FuelConsumption"
+        mc:Ignorable="d"
+        Title="Aktualizuj ceny" Height="211.942" Width="247.328" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock x:Name="MainTextBlock" HorizontalAlignment="Center" FontSize="16" Margin="0,10,0,0" TextWrapping="Wrap" Text="Aktualne ceny paliw" VerticalAlignment="Top"/>
+        <Label x:Name="ETLabel" Content="Benzyna:" HorizontalAlignment="Left" Margin="82,46,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ONLabel" Content="Olej napędowy:" HorizontalAlignment="Left" Margin="47,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LPGLabel" Content="Gaz:" HorizontalAlignment="Left" Margin="106,98,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="AcceptButton" Content="Zatwierdź" HorizontalAlignment="Center" Margin="30,141,85.6,0" VerticalAlignment="Top" Width="62" Click="AcceptButton_Click"/>
+        <TextBox x:Name="ETPriceTextBox" HorizontalAlignment="Left" Foreground="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Height="23" Margin="137,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" TextAlignment="Center" LostFocus="ETPriceTextBox_LostFocus" GotFocus="ETPriceTextBox_GotFocus"/>
+        <TextBox x:Name="ONPriceTextBox" HorizontalAlignment="Left" Foreground="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Height="23" Margin="137,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" TextAlignment="Center" LostFocus="ONPriceTextBox_LostFocus" GotFocus="ONPriceTextBox_GotFocus"/>
+        <TextBox x:Name="LPGPriceTextBox" HorizontalAlignment="Left" Foreground="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Height="23" Margin="137,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" TextAlignment="Center" LostFocus="LPGPriceTextBox_LostFocus" GotFocus="LPGPriceTextBox_GotFocus"/>
+        <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Center" Margin="106,141,9.6,0" VerticalAlignment="Top" Width="62" Click="ExitButton_Click"/>
+    </Grid>
+</Window>

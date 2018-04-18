@@ -82,7 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="FuelType.xaml">
+    <Page Include="FuelTypeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -95,21 +95,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Calculate.cs" />
-    <Compile Include="FuelType.xaml.cs">
-      <DependentUpon>FuelType.xaml</DependentUpon>
+    <Compile Include="FileHandler.cs" />
+    <Compile Include="FuelTypeWindow.xaml.cs">
+      <DependentUpon>FuelTypeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Prices.xaml">
+    <Page Include="ChangePricesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Prices.xaml.cs">
-      <DependentUpon>Prices.xaml</DependentUpon>
+    <Compile Include="ChangePricesWindow.xaml.cs">
+      <DependentUpon>ChangePricesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -1,17 +1,18 @@
-﻿<Window x:Class="Spalanie.FuelType"
+﻿<Window x:Class="FuelConsumption.FuelTypeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Spalanie"
+        xmlns:local="clr-namespace:FuelConsumption"
         mc:Ignorable="d"
-        Title="Typ paliwa" Height="224.541" Width="267.268">
+        Title="Typ paliwa" Height="224.541" Width="267.268" ResizeMode="NoResize">
     <Grid RenderTransformOrigin="0.5,0.5">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="16" TextWrapping="Wrap" Text="Wybierz typ paliwa:" VerticalAlignment="Top" Width="148"/>
-        <Button x:Name="button" Content="Zatwierdź" HorizontalAlignment="Left" Margin="164,160,0,0" VerticalAlignment="Top" Width="77" Click="Button_Click"/>
         <RadioButton x:Name="et" Content="" HorizontalAlignment="Left" Margin="20,53,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton x:Name="on" Content="" HorizontalAlignment="Left" Margin="20,87,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="lpg" Content="" HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="changePrice" Content="Aktualizuj ceny" HorizontalAlignment="Left" Margin="50,160,0,0" VerticalAlignment="Top" Width="98" Click="Prices_Click"/>
+        <Button x:Name="AcceptButton" Content="Zatwierdź" HorizontalAlignment="Left" Margin="81,160,0,0" VerticalAlignment="Top" Width="77" Click="AcceptButton_Click"/>
+        <Button x:Name="changePrices" Content="Aktualizuj ceny" HorizontalAlignment="Left" Margin="143,136,0,0" VerticalAlignment="Top" Width="98" Click="ChangePrices_Click"/>
+        <Button x:Name="ExitButton" Content="Anuluj" HorizontalAlignment="Left" Margin="164,160,0,0" VerticalAlignment="Top" Width="77" Click="ExitButton_Click"/>
     </Grid>
 </Window>

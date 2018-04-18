@@ -1,7 +1,7 @@
-﻿<Application x:Class="Spalanie.App"
+﻿<Application x:Class="FuelConsumption.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Spalanie"
+             xmlns:local="clr-namespace:FuelConsumption"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
