@@ -8,13 +8,15 @@ namespace FuelConsumption
     public partial class FuelTypeWindow : Window
     {
         RadioButton[] radioLabel;
+        FileHandler handler;
         decimal[] prices = new decimal[3];
         string[] label = new string[3];
         public decimal chosenFuel = 0;
         public string chosenFuelText = "";
-        
-        public FuelTypeWindow()
+
+        public FuelTypeWindow(FileHandler handler)
         {
+            this.handler = handler;
             InitializeComponent();
             radioLabel = new RadioButton[3] { et, on, lpg }; 
 
@@ -23,13 +25,10 @@ namespace FuelConsumption
 
         public void PricesInfo()
         {
-            FileHandler handler = new FileHandler();
-            string[] ReadLines = handler.Reader("ceny.txt");
-
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                label[i] = LabelRegex(ReadLines[i]);
-                prices[i] = Decimal.Parse(PriceRegex(ReadLines[i]));
+                label[i] = handler.GetNLabel(i);
+                prices[i] = handler.GetNPrice(i);
                 SetRadioButtonContent(i);
             }
         }
@@ -71,34 +70,28 @@ namespace FuelConsumption
             }
         }
 
-        public decimal PricesInfoInit()
+        public decimal GetChosenFuel()
         {
-            chosenFuelText = label[0];
-            return prices[0];
+            return chosenFuel;
         }
 
-        private string LabelRegex(string label)
+        public string GetChosenFuelText()
         {
-            return Regex.Match(label, "^[A-Z]+").Value;
-        }
-
-        private string PriceRegex(string price)
-        {
-            return Regex.Match(price, @"\d+\,\d+").Value;
+            return chosenFuelText;
         }
 
         private void ChangePrices_Click(object sender, RoutedEventArgs e)
         {
-            ChangePricesWindow pricesWindow = new ChangePricesWindow(prices);
+            ChangePricesWindow pricesWindow = new ChangePricesWindow(prices, handler);
             if(pricesWindow.ShowDialog() == true)
             {
                 for(int i = 0; i < 3; i++)
                 {
                     prices[i] = pricesWindow.GetChangedFuelPrices(i);
                     SetRadioButtonContent(i);
-                    Console.WriteLine(i);
                 }
 
+                handler.Reader();
                 pricesWindow.Close();
             }
         }

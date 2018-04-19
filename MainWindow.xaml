@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Obliczanie średniego spalania" Height="205" Width="374.608" ResizeMode="NoResize">
     <Canvas  >
-        <TextBox Name="TextBoxDistanceToTravel" Canvas.Left="69" TextWrapping="Wrap" Text="" Canvas.Top="17" Width="87" />
+        <TextBox Name="TextBoxDistanceToTravel" Canvas.Left="69" TextWrapping="Wrap" Text="" Canvas.Top="17" Width="87" MaxLength="10" />
         <Label Content="Dystans:" Canvas.Left="10" Canvas.Top="13" HorizontalContentAlignment="Right" Width="59"/>
-        <TextBox Name="TextBoxAmountOfFuel" Canvas.Left="69" TextWrapping="Wrap" Text="" Canvas.Top="45" Width="87"/>
+        <TextBox Name="TextBoxAmountOfFuel" Canvas.Left="69" TextWrapping="Wrap" Text="" Canvas.Top="45" Width="87" MaxLength="10"/>
         <Label Content="Paliwo:" Canvas.Left="19" Canvas.Top="40" Width="50" HorizontalContentAlignment="Right"/>
         <Label Name = "labelResult" Content="" Canvas.Left="19" Canvas.Top="71" Foreground="#FF1E7CDA" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.486,-0.226" Height="32"/>
         <Label Name = "kilometerCost" Content="" Canvas.Left="19" Canvas.Top="103" Foreground="#FF1E7CDA" FontWeight="Bold" FontSize="16" RenderTransformOrigin="0.486,-0.226" Height="32"/>

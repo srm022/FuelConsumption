@@ -8,11 +8,13 @@ namespace FuelConsumption
 {
     public partial class ChangePricesWindow : Window
     {
+        FileHandler handler;
         decimal[] prices;
 
-        public ChangePricesWindow(decimal[] prices)
+        public ChangePricesWindow(decimal[] prices, FileHandler handler)
         {
             this.prices = prices;
+            this.handler = handler;
 
             InitializeComponent();
             ETPriceTextBox.Text = prices[0].ToString();
@@ -24,7 +26,7 @@ namespace FuelConsumption
         {
             try
             {
-                if (!RegexCheck(ETPriceTextBox.Text) || !RegexCheck(ONPriceTextBox.Text) || !RegexCheck(LPGPriceTextBox.Text))
+                if (!TextBoxRegexCheck(ETPriceTextBox.Text) || !TextBoxRegexCheck(ONPriceTextBox.Text) || !TextBoxRegexCheck(LPGPriceTextBox.Text))
                     return false;
                 else
                 {
@@ -40,20 +42,7 @@ namespace FuelConsumption
             }
         }
 
-        private void AcceptButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(!ParseTextBoxes())
-                MessageBox.Show("Wpisane dane są w złym formacie!", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Warning);
-            else
-            {
-                FileHandler handler = new FileHandler();
-                handler.Writer("ceny.txt", prices);
-                DialogResult = true;
-                Close();
-            }
-        }
-
-        private bool RegexCheck(string PriceString)
+        private bool TextBoxRegexCheck(string PriceString)
         {
             return Regex.IsMatch(PriceString, @"^\d+\,\d+$");
         }
@@ -63,6 +52,18 @@ namespace FuelConsumption
             return prices[i];
         }
 
+        private void AcceptButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ParseTextBoxes())
+                MessageBox.Show("Wpisane dane są w złym formacie!", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else
+            {
+                handler.Writer(prices);
+                DialogResult = true;
+                Close();
+            }
+        }
+
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -70,7 +71,7 @@ namespace FuelConsumption
 
         private void ETPriceTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (ETPriceTextBox.Text == "" || ETPriceTextBox.Text == prices[0].ToString() || !RegexCheck(ETPriceTextBox.Text)) // sprawdza, czy wartość textboxa jest pusta lub w nieprawidłowym formacie
+            if (ETPriceTextBox.Text == "" || ETPriceTextBox.Text == prices[0].ToString() || !TextBoxRegexCheck(ETPriceTextBox.Text)) // sprawdza, czy wartość textboxa jest pusta lub w nieprawidłowym formacie
             {
                 ETPriceTextBox.Text = prices[0].ToString();
                 ETPriceTextBox.Foreground = SystemColors.ActiveBorderBrush;
@@ -79,7 +80,7 @@ namespace FuelConsumption
 
         private void ONPriceTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (ONPriceTextBox.Text == "" || ONPriceTextBox.Text == prices[1].ToString() || !RegexCheck(ETPriceTextBox.Text)) // sprawdza, czy wartość textboxa jest pusta lub w nieprawidłowym formacie
+            if (ONPriceTextBox.Text == "" || ONPriceTextBox.Text == prices[1].ToString() || !TextBoxRegexCheck(ETPriceTextBox.Text)) // sprawdza, czy wartość textboxa jest pusta lub w nieprawidłowym formacie
             {
                 ONPriceTextBox.Text = prices[1].ToString();
                 ONPriceTextBox.Foreground = SystemColors.ActiveBorderBrush;
@@ -88,7 +89,7 @@ namespace FuelConsumption
 
         private void LPGPriceTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (LPGPriceTextBox.Text == "" || LPGPriceTextBox.Text == prices[2].ToString() || !RegexCheck(ETPriceTextBox.Text)) // sprawdza, czy wartość textboxa jest pusta lub w nieprawidłowym formacie
+            if (LPGPriceTextBox.Text == "" || LPGPriceTextBox.Text == prices[2].ToString() || !TextBoxRegexCheck(ETPriceTextBox.Text)) // sprawdza, czy wartość textboxa jest pusta lub w nieprawidłowym formacie
             {
                 LPGPriceTextBox.Text = prices[2].ToString();
                 LPGPriceTextBox.Foreground = SystemColors.ActiveBorderBrush;

@@ -6,40 +6,40 @@ namespace FuelConsumption
     public partial class MainWindow : Window
     {
         decimal fuelPrice;
+        string path = "ceny.txt";
         FuelTypeWindow FuelTypeWindow;
+        FileHandler handler;
+        Calculate calculator;
 
         public MainWindow()
         {
+            handler = new FileHandler(path);
+            handler.Reader();
             InitializeComponent();
+            SetFuelPrice(handler.GetNPrice(0), handler.GetNLabel(0));          // czytanie pliku i jego pierwszej linii celem inicjalizacji
             TextBoxDistanceToTravel.Focus();
-            FuelTypeWindow = new FuelTypeWindow();
-            SetFuelPrice(FuelTypeWindow.PricesInfoInit(), FuelTypeWindow.chosenFuelText);
-            FuelTypeWindow.Close();
         }
 
         private void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
-            Calculate calculator = new Calculate();
-            //double DistanceToTravel = Convert.ToDouble(TextBoxDistanceToTravel.Text); //TODO calculate exception
-            //double AmountOfFuel = Convert.ToDouble(TextBoxAmountOfFuel.Text);
-
-            calculator.CalculateConsumption(TextBoxDistanceToTravel.Text, TextBoxAmountOfFuel.Text, fuelPrice);
+            calculator.CalculateConsumption(TextBoxDistanceToTravel.Text, TextBoxAmountOfFuel.Text);
             labelResult.Content = calculator.GetLabelResult();
             kilometerCost.Content = calculator.GetKilometerCost();
         }
 
         private void FuelTypeButton_Click(object sender, RoutedEventArgs e)
         {
-            FuelTypeWindow = new FuelTypeWindow();
+            FuelTypeWindow = new FuelTypeWindow(handler);
             if(FuelTypeWindow.ShowDialog() == true)
-                SetFuelPrice(FuelTypeWindow.chosenFuel, FuelTypeWindow.chosenFuelText);
+                SetFuelPrice(FuelTypeWindow.GetChosenFuel(), FuelTypeWindow.GetChosenFuelText());
         }
 
         public void SetFuelPrice(decimal price, string text)
         {
-            fuelPrice = price;
+            calculator = new Calculate(price);
+            
             string ContentValue = String.Concat("Aktualny typ: ", text);
-            TypeNameLabel.Content = String.Concat(ContentValue, ", " + string.Format("{0:C}", price));
+            TypeNameLabel.Content = String.Concat(ContentValue, ", " + string.Format("{0:C}", calculator.GetFuelPrice()));
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
