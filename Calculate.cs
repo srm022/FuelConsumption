@@ -6,9 +6,11 @@ namespace FuelConsumption
     {
         string labelResult, kilometerCost;
         
-        public void CalculateConsumption(double distanceToTravel, double amountOfFuel, decimal fuelPrice)
+        public void CalculateConsumption(string distanceInString, string amountInString, decimal fuelPrice)
         {
             double consumption = 0;
+            double distanceToTravel = Convert.ToDouble(distanceInString);
+            double amountOfFuel = Convert.ToDouble(amountInString);
 
             try
             {

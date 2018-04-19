@@ -20,10 +20,10 @@ namespace FuelConsumption
         private void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
             Calculate calculator = new Calculate();
-            double DistanceToTravel = Convert.ToDouble(TextBoxDistanceToTravel.Text); //TODO calculate exception
-            double AmountOfFuel = Convert.ToDouble(TextBoxAmountOfFuel.Text);
+            //double DistanceToTravel = Convert.ToDouble(TextBoxDistanceToTravel.Text); //TODO calculate exception
+            //double AmountOfFuel = Convert.ToDouble(TextBoxAmountOfFuel.Text);
 
-            calculator.CalculateConsumption(DistanceToTravel, AmountOfFuel, fuelPrice);
+            calculator.CalculateConsumption(TextBoxDistanceToTravel.Text, TextBoxAmountOfFuel.Text, fuelPrice);
             labelResult.Content = calculator.GetLabelResult();
             kilometerCost.Content = calculator.GetKilometerCost();
         }
